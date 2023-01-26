@@ -14,56 +14,53 @@
             width: 60%;
             margin-bottom: 20px;
         }
+
+        main {
+            margin-top: 160px;
+        }
     </style>
 </head>
 
 <body class="bg-secondary" style="font-family:monospace;">
-    <div>
 
-        <!--LA BARRA DE NAVEGACION-->
-        <div class="container-fluid bg-dark" style="padding:0">
-            <nav class="navbar navbar-expand-lg navbar-light " style="margin: 5px ; font-size: 40px;">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="https://www.leagueoflegends.com/es-es/"><img
-                            src="img/bibliLogoRec.png" alt="" style="width:50% ;"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <div class="bg-ligth">
-                            <span class="navbar-toggler-icon"></span>
-                        </div>
 
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
-                            <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="#">Inicio</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    ¿Tienes cuenta?
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Registrarse</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+    <!--LA BARRA DE NAVEGACION-->
+    <div class="container-fluid bg-dark fixed-top" style="padding:0">
+        <nav class="navbar navbar-expand-lg navbar-light " style="margin: 5px ; font-size: 40px;">
+            <div class="container-fluid">
 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="bg-ligth">
+                        <span class="navbar-toggler-icon"></span>
                     </div>
 
+                </button>
 
-                </div>
-            </nav>
-        </div>
-        <div class="container-fluid bg-dark" style="margin-bottom: 10px ;">
-            <div class="row" style="padding: 20px ;">
-                <div class="col-sm-12 col-md-12 d-flex justify-content-center">
-                    <form class="d-flex w-50">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                ¿Tienes cuenta?
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-size: 40px;">
+                                <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="navbar-brand" href="https://www.leagueoflegends.com/es-es/"><img
+                            src="img/bibliLogoRec.png" alt="" style="width:50% ;"></a>
+
+                    <form class="d-flex" style="width: 41.05%;">
 
                         <input type="text" class="form-control" placeholder="Término de búsqueda">
                         <button class="btn btn-lg btn-outline-success" type="submit">BUSCAR</button>
@@ -71,11 +68,20 @@
                 </div>
 
             </div>
-        </div>
+    </div>
 
-        <!---->
-        <!--SLIDER-->
+    </div>
 
+
+    </div>
+    </nav>
+
+    </div>
+
+
+    <!---->
+    <!--SLIDER-->
+    <main>
         <div class="container-fluid carrusel bg-dark">
             <h4 style="font-family:monospace; font-size : 46px; color: aliceblue;">AUTORES DESTACADOS</h4>
 
@@ -119,10 +125,11 @@
         <!--AQUÍ VAN LAS CARDS-->
         <center>
             <div class="col-sm-12 col-md-12 bg-dark" style="width: 60%;">
-                <h1 style="font-family:monospace; font-size : 46px; color: aliceblue;">LOS FAVORITOS DE LOS LECTORES</h1>
+                <h1 style="font-family:monospace; font-size : 46px; color: aliceblue;">LOS FAVORITOS DE LOS LECTORES
+                </h1>
                 <iframe src="swiper.html" style="height: 300px; width:40%;border-radius: 5%;"></iframe>
             </div>
-            
+
         </center>
 
 
@@ -239,19 +246,9 @@
         </div>
 
 
+        <script src="lb/js/bootstrap.min.js"></script>
+    </main>
 
-
-
-
-    </div>
-    </div>
-
-
-
-
-
-
-    <script src="lb/js/bootstrap.min.js"></script>
 </body>
 
 </html>
