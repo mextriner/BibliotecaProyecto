@@ -16,7 +16,7 @@
             <nav class="navbar navbar-expand-lg navbar-light "  style="margin: 5px ;">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="https://www.leagueoflegends.com/es-es/"><img
-                            src="AlexandriaLogo-removebg-preview.png" alt="" style="width:50% ;"></a>
+                            src="img/bibliLogoRec.png" alt="" style="width:50% ;"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -45,8 +45,10 @@
                             </li>
                         </ul>
                         <form class="d-flex">
-                            <input type="search" placeholder="Término de búsqueda">
-                            <button class="btn btn-outline-success" type="submit">BUSCAR</button>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-outline-success" type="button" id="button-addon2">Button</button>
+                              </div>
                         </form>
                     </div>
                 </div>
@@ -56,33 +58,41 @@
         <!--en esta linea se reparten los elementos-->
         <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
-                <form method="" action="">
+                <form method="POST" action="insertarUsuario.php">
                     <h1 style="font-size: 30px; ;"><strong>REGISTRO</strong></h1>
                     <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" name="usuario" placeholder="Usuario">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Clave</label>
+                        <input type="password" class="form-control" name="clave" placeholder="Contraseña">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre">
                     </div>
-
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+                        <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" name="apellido" placeholder="Apellidos">
                     </div>
-
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correo" placeholder="name@example.com">
+                        <label for="exampleFormControlInput1" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" name="apellido" placeholder="Direccion de Residencia">
                     </div>
 
                     <div class="mb-5 pb-3">
                         <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" id="fechaNac" placeholder="Fecha de Nacimiento">
+                        <input type="date" class="form-control" name="fechaNac" placeholder="Fecha de Nacimiento">
                     </div>
-
+                    <input type="hidden" name="oculto" value="1">
                     <div class="mt-5 col-12 d-flex justify-content-center align-item-center">
                         <button class="btn btn-outline-success Hadow rounded border" type="submit">REGISTRARSE</button>
 
                     </div>
-
+                    
                 </form>
             </div>
            
