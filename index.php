@@ -29,9 +29,9 @@
         <nav class="navbar navbar-expand-lg navbar-light " style="margin: 5px ; font-size: 40px;">
             <div class="container-fluid">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="https://www.leagueoflegends.com/es-es/"><img src="img/bibliLogoRec.png" alt="" style="width:50% ;"></a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="bg-ligth">
                         <span class="navbar-toggler-icon"></span>
                     </div>
@@ -44,8 +44,7 @@
                             <a class="nav-link active text-light" aria-current="page" href="#">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 ¿Tienes cuenta?
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-size: 40px;">
@@ -57,8 +56,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <a class="navbar-brand" href="https://www.leagueoflegends.com/es-es/"><img
-                            src="img/bibliLogoRec.png" alt="" style="width:50% ;"></a>
+
 
                     <form class="d-flex" style="width: 41.05%;">
 
@@ -85,8 +83,7 @@
         <div class="container-fluid carrusel bg-dark">
             <h4 style="font-family:monospace; font-size : 46px; color: aliceblue;">AUTORES DESTACADOS</h4>
 
-            <div id="carouselExampleControls" class="carousel slide justify contetn-center text-center text-light"
-                data-bs-ride="carousel" style="font-size:40px;">
+            <div id="carouselExampleControls" class="carousel slide justify contetn-center text-center text-light" data-bs-ride="carousel" style="font-size:40px;">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="img/bardo.webp" class="d-block w-100" alt="...">
@@ -101,13 +98,11 @@
                         <strong>MORDEKAISER</strong>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -127,7 +122,7 @@
             <div class="col-sm-12 col-md-12 bg-dark" style="width: 60%;">
                 <h1 style="font-family:monospace; font-size : 46px; color: aliceblue;">LOS FAVORITOS DE LOS LECTORES
                 </h1>
-                <iframe src="swiper.html" style="height: 300px; width:40%;border-radius: 5%;"></iframe>
+                <iframe src="swiper.php" style="height: 565px; width:40%;border-radius: 5%;"></iframe>
             </div>
 
         </center>
@@ -196,9 +191,7 @@
                 <div class="container-fluid ">
                     <div class="row">
                         <div class="col-12 justify-content-center">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
@@ -212,12 +205,10 @@
                                         <a class="nav-link text-light" href="#">AYÚDANOS A MEJORAR</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link disabled text-light" href="#" tabindex="-1"
-                                            aria-disabled="true">ASISTENCIA</a>
+                                        <a class="nav-link disabled text-light" href="#" tabindex="-1" aria-disabled="true">ASISTENCIA</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link disabled text-light" href="#" tabindex="-1"
-                                            aria-disabled="true">ESTADO DEL SERVIDOR</a>
+                                        <a class="nav-link disabled text-light" href="#" tabindex="-1" aria-disabled="true">ESTADO DEL SERVIDOR</a>
                                     </li>
                                 </ul>
                             </div>

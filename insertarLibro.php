@@ -14,44 +14,51 @@ if (isset($_POST['oculto'])) {
     $type = $_FILES['foto']['type'];
     $max_size = 740 * 740;
 
-
-    $nombre = $_REQUEST['Titulo']; //REQUEST: permite recibir los datos independientemente del método (POST o GET)
+    
+    $nombre = $_POST['Titulo']; //REQUEST: permite recibir los datos independientemente del método (POST o GET)
     $isbn = $_POST['ISBN'];
     $fecha = $_POST['Fecha'];
+    $fecha = date('Y-m-d');
+
+
     $bestseller = $_POST['bestseller'];
-    if ($bestseller != 'True') {
-        $bestseller = 'False';
+    if ($bestseller =='NO') {
+        $bestseller = false;
+    }else{
+        $bestseller = true;
     }
     $descripcion = $_POST['descripcion'];
     $editorial = $_POST['editorial'];
-    $unidades = $_POST['Unidades'];
+    $unidades = null;//$_POST['Unidades'];
 
     if ($error) {
-        $resultado = "ha ocurrido un error";
-        echo $resultado;
+        $r = "ha ocurrido un error";
+        echo $r;
     } elseif ($size > $max_size) {
-        $resultado = "la imagen es demasioado grande. El máximo es de 1MB";
-        echo $resultado;
+        $r = "la imagen es demasioado grande. El máximo es de 1MB";
+        echo $r;
     } elseif (
         $type != 'image/jpg' && $type != 'image/jpeg' && $type != 'image/png' &&
         $type != 'image/gif' && $type != 'image/jpg' && $type != 'image/jfif'
     ) {
-        $resultado = "las extensiones válidas son : jpg, jpeg, png, gig, jfif";
-        echo $resultado;
+        $r = "las extensiones válidas son : jpg, jpeg, png, gig, jfif";
+        echo $r;
     } else {
-        $resultado = "la imagen ha sido cargada correctamente";
+        $r = "la imagen ha sido cargada correctamente";
 
+        echo $r;
         //destino del archivo
+        $ruta = $name;
         $destino = "fotos/" . $name;
         //copiar la foto en el directorio
         move_uploaded_file($tmp_name, $destino);
-        //copy($ruta,$destino);
+        copy($ruta,$destino);
         //subir los archivos a la base de datos, creando ua consulta insert
         require 'conexion.php';
 
         $mbd->exec("SET CHARACTER SET utf8");
         $sql = $mbd->prepare("INSERT INTO libro (ISBN,titulo,fechaPublicacion,bestSeller,portada,Editorial_idEditorial,descripcion) 
-        VALUES('?','?','?','?','?','?','?');");
+        VALUES(?,?,?,?,?,?,?);");
 
         $resultado = $sql->execute([$isbn,$nombre,$fecha,$bestseller,$destino,$editorial,$descripcion]);
         if ($resultado === TRUE) {
@@ -60,15 +67,15 @@ if (isset($_POST['oculto'])) {
             echo "Error al insertar el registro";
         }
 
-        for ($i = 0 ; $i < $unidades ; $i++){
+        /*for ($i = 0 ; $i < $unidades ; $i++){
             $mbd->exec("SET CHARACTER SET utf8");
             $sql = $mbd->prepare("INSERT INTO libro (INSERT INTO unidad(Libro_ISBN)) 
             VALUES('?';);");
             $resultado = $sql->execute([$isbn]);
-        }
+        }*/
         
-
-        mysqli_query($mdb, "INSERT INTO unidad");
-        header('Location: index.html');
+        mysqli_close($mdb);
+        //mysqli_query($mdb, "INSERT INTO unidad");
+        header('Location: index.php');
     }
 }

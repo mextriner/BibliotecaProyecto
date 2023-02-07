@@ -12,6 +12,6 @@
 
 
     } catch(Exception $e){
-            echo "Error de conexión" . $e->getMessage();
+        echo "Error de conexión" . $e->getMessage();
     }
 ?>

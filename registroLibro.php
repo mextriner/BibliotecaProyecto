@@ -55,12 +55,12 @@
         <div class="container-fluid bg-dark">
             <!--en esta linea se reparten los elementos-->
 
-            <form method="POST" action="insertarLibro.php" enctype="multipart/form-data" >
+            <form method="POST" action="insertarLibro.php" enctype="multipart/form-data">
 
                 <div class="row  d-flex justify-content-center">
 
                     <div class="col-md-4 col-sm-12 mb-3 mt-4">
-                        <h1 style="font-size: 30px; ;"><strong>REGISTRO</strong></h1>
+                        <h1 style="font-size: 30px;"><strong>REGISTRO</strong></h1>
 
                         <label for="exampleFormControlInput1" class="form-label">Libro</label>
                         <input type="text" class="form-control" name="Titulo" placeholder="Título">
@@ -91,29 +91,31 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
-                        <div class="pt-5 mb-4">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Bestseller
-                            </label>
-                            <input class="form-check-input" type="checkbox" value="True" name="bestseller" id="flexCheckDefault">
 
+                        <label for="inputState" class="form-label">Bestseller</label>
+                        <div class="form-floating mb-4">
+                            <select name="bestseller" class="form-select">
+                                <option selected>NO</option>
+                                <option>SÍ</option>
+                            </select>
                         </div>
+
                         <div class="mb-4">
                             <label for="exampleFormControlInput1" class="form-label">Descripción</label>
                             <textarea class="form-control" name="descripcion" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-
+                        <label for="inputState" class="form-label">Editorial</label>
                             <div class="form-floating">
-                                <label for="inputState" class="form-label">Editorial</label>
+                                
                                 <select name="editorial" class="form-select">
                                     <option selected>Seleccione Editorial</option>
                                     <?php
                                     include 'conexion.php';
                                     /*$conexion = new PDO('mysql:host=localhost;dbname=aplicacion','root', '');*/
                                     foreach ($mbd->query("SELECT * FROM editorial;") as $editorial) {
-                                    
-                                        echo '<option>'.$editorial['idEditorial'] . " " . $editorial['nombre'].'</option>';
+
+                                        echo '<option>' . $editorial['idEditorial'];
                                     }
                                     ?>
                                 </select>

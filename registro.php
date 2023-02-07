@@ -80,7 +80,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Direccion</label>
-                        <input type="text" class="form-control" name="apellido" placeholder="Direccion de Residencia">
+                        <input type="text" class="form-control" name="direccion" placeholder="Direccion de Residencia">
                     </div>
 
                     <div class="mb-5 pb-3">
