@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
     <link rel="stylesheet" href="lb/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css2/all.min.css" />
 </head>
+
 <body calss="justify-content-center" style="background-color: #262424;">
-    
-     
-    
-    <div class="row justify-content-center text-center">
-        <div class="col-sm-12 col-md-5 d-flex justify-content-center align-item-center" style="width:500px; height: 100px;">
-            <a href="#"><img src="AL2-removebg-preview.png" style="width:100% ;height: 100%;"></a>
-        </div>
-        <h4 style="font-family:monospace; font-size : 46px; color: aliceblue;"><strong>INICIAR SESIÓN</strong></h4>
-        <div class="col-sm-12 col-md-5 d-flex justify-content-center align-item-center">
-            <form class="form-control" action="loginProceso.php" method="POST" style="background-color: #413E3E;">
-                <div class="col-12 mb-3 mt-5 d-flex justify-content-center align-item-center">
-                    <input type="text" class="for-group" name="usuario2" placeholder="Usuario">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
+            <div class="row justify-content-center text-center">
+                <div class="col-sm-12 col-md-12 d-flex justify-content-center">
+                    <a href="#"><img src="img/bibliLogoRec.png"></a>
                 </div>
-                <div class="col-12 mb-3 d-flex justify-content-center align-item-center">
-                    <input type="password" class="for-group" name="clave2" placeholder="Contraseña">
+            </div>
+            <form method="" action="">
+                <h1 style="font-size: 30px; ;"><strong>INICIAR SESIÓN</strong></h1>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre">
                 </div>
-                <div class="mt-5 col-12 mb-3 d-flex justify-content-center align-item-center">
-                    <button class="btn btn-outline-success Hadow rounded border" type="submit" style="margin-left: 20px;">INICIAR SESIÓN</button>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="clave" name="clave" placeholder="Apellidos">
+                </div>
+
+                <div class="mt-5 col-12 d-flex justify-content-center align-item-center"
+                    style="text-shadow:2px 2px 2px black ;">
+                    <button class="btn btn-outline-success Hadow rounded border" type="submit">INICIAR SESIÓN</button>
+
                 </div>
 
             </form>
+
         </div>
     </div>
-    
+
+
 </body>
 <script src="lb/js/bootstrap.min.js"> </script>
+
 </html>
