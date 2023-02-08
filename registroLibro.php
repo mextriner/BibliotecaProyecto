@@ -95,8 +95,8 @@
                         <label for="inputState" class="form-label">Bestseller</label>
                         <div class="form-floating mb-4">
                             <select name="bestseller" class="form-select">
-                                <option selected>NO</option>
-                                <option>SÍ</option>
+                                <option value=0>NO</option>
+                                <option value=1>SÍ</option>
                             </select>
                         </div>
 
@@ -115,7 +115,7 @@
                                     /*$conexion = new PDO('mysql:host=localhost;dbname=aplicacion','root', '');*/
                                     foreach ($mbd->query("SELECT * FROM editorial;") as $editorial) {
 
-                                        echo '<option>' . $editorial['idEditorial'];
+                                        echo '<option value='.$editorial['idEditorial'].'.>'.$editorial['nombre'].'</option>';
                                     }
                                     ?>
                                 </select>
