@@ -111,12 +111,6 @@
 
         </div>
 
-
-
-
-
-
-
         <!--AQUÍ VAN LAS CARDS-->
         <center>
             <div class="col-sm-12 col-md-12 bg-dark" style="width: 60%;">
