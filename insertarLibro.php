@@ -17,8 +17,10 @@ if (isset($_POST['oculto'])) {
     
     $nombre = $_POST['Titulo']; //REQUEST: permite recibir los datos independientemente del método (POST o GET)
     $isbn = $_POST['ISBN'];
+    
     $fecha = $_POST['Fecha'];
-    $fecha = date('Y-m-d');
+    $fecha = strtotime($fecha);
+    $fecha = date('Y-m-d',$fecha);
 
 
     $bestseller = $_POST['bestseller'];
@@ -29,7 +31,7 @@ if (isset($_POST['oculto'])) {
     }
     $descripcion = $_POST['descripcion'];
     $editorial = $_POST['editorial'];
-    $unidades = null;//$_POST['Unidades'];
+    $unidades = $_POST['Unidades'];
 
     if ($error) {
         $r = "ha ocurrido un error";
@@ -62,19 +64,19 @@ if (isset($_POST['oculto'])) {
 
         $resultado = $sql->execute([$isbn,$nombre,$fecha,$bestseller,$destino,$editorial,$descripcion]);
         if ($resultado === TRUE) {
-            header('Location: index.html');
+            for ($i = 0 ; $i < $unidades ; $i++){
+                $mbd->exec("SET CHARACTER SET utf8");
+                $sql2 = $mbd->prepare("INSERT INTO unidad (Libro_ISBN,estado) 
+                VALUES(?,?);");
+                $resultado2 = $sql2->execute([$isbn,true]);
+            }
+            header('Location: index.php');
         } else {
             echo "Error al insertar el registro";
         }
 
-        /*for ($i = 0 ; $i < $unidades ; $i++){
-            $mbd->exec("SET CHARACTER SET utf8");
-            $sql = $mbd->prepare("INSERT INTO libro (INSERT INTO unidad(Libro_ISBN)) 
-            VALUES('?';);");
-            $resultado = $sql->execute([$isbn]);
-        }*/
         
-        mysqli_close($mdb);
+        
         //mysqli_query($mdb, "INSERT INTO unidad");
         header('Location: index.php');
     }

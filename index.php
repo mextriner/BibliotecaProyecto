@@ -1,3 +1,14 @@
+<?php
+
+if(!isset($_SESSION['id'])){
+    header('location.inicSesion.php');
+}else{
+    echo $_SESSION['id'];
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,13 +21,19 @@
     <link rel="stylesheet" href="lb/css/bootstrap.min.css">
     <link rel="stylesheet" href="fuentes/css/all.min.css">
     <style>
-        .carrusel {
+        /* .carrusel {
             width: 60%;
             margin-bottom: 20px;
-        }
+        } */
 
         main {
-            margin-top: 160px;
+            /* margin-top: 160px; */
+            width: 100%;
+        }
+
+        .navbar {
+            border: solid white 1px;
+            border-radius: 5%;
         }
     </style>
 </head>
@@ -25,159 +42,59 @@
 
 
     <!--LA BARRA DE NAVEGACION-->
-    <div class="container-fluid bg-dark fixed-top" style="padding:0">
-        <nav class="navbar navbar-expand-lg navbar-light " style="margin: 5px ; font-size: 40px;">
+    <div class="container-fluid bg-secondary" style="padding:0">
+        <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
-
-                <a class="navbar-brand" href="https://www.leagueoflegends.com/es-es/"><img src="img/bibliLogoRec.png" alt="" style="width:50% ;"></a>
-
+                <a class="navbar-brand" href=""><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="bg-ligth">
                         <span class="navbar-toggler-icon"></span>
                     </div>
 
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active text-light" aria-current="page" href="#">Inicio</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 ¿Tienes cuenta?
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-size: 40px;">
-                                <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="registro.php">Registrarse</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+                                <li><a class="dropdown-item" href="inicSesion.php">Iniciar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
-
-
-                    <form class="d-flex" style="width: 41.05%;">
-
-                        <input type="text" class="form-control" placeholder="Término de búsqueda">
-                        <button class="btn btn-lg btn-outline-success" type="submit">BUSCAR</button>
+                    <form class="d-flex">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-info" type="button" id="button-addon2">Button</button>
+                        </div>
                     </form>
                 </div>
-
             </div>
-    </div>
-
-    </div>
-
-
-    </div>
-    </nav>
-
+        </nav>
     </div>
 
 
     <!---->
     <!--SLIDER-->
     <main>
-        <div class="container-fluid carrusel bg-dark">
-            <h4 style="font-family:monospace; font-size : 46px; color: aliceblue;">AUTORES DESTACADOS</h4>
-
-            <div id="carouselExampleControls" class="carousel slide justify contetn-center text-center text-light" data-bs-ride="carousel" style="font-size:40px;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="img/bardo.webp" class="d-block w-100" alt="...">
-                        <strong>BARDO</strong>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/MissFortune_1.jpg" class="d-block w-100" alt="...">
-                        <strong>MISS FORTUNE</strong>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="img/Mordekaiser_13.jpg" class="d-block w-100" alt="...">
-                        <strong>MORDEKAISER</strong>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-
-            </div>
-
-        </div>
-
         <!--AQUÍ VAN LAS CARDS-->
         <center>
-            <div class="col-sm-12 col-md-12 bg-dark" style="width: 60%;">
+            <div class="col-sm-12 col-md-12 bg-dark" style="width: 100%;">
                 <h1 style="font-family:monospace; font-size : 46px; color: aliceblue;">LOS FAVORITOS DE LOS LECTORES
                 </h1>
-                <iframe src="swiper.php" style="height: 565px; width:40%;border-radius: 5%;"></iframe>
+                <iframe src="swiper.php" style="height: 650px; width:100%;border-radius: 5%;"></iframe>
             </div>
 
         </center>
 
-
-
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-center mt-3 pt-2 pb-2 bg-secondary text-center bg-dark">
-                <h4 style="font-family:monospace; font-size : 46px; color: aliceblue;"><strong>AUTORES
-                        POPULARES</strong></h4>
-                <div class="col-sm-12 col-md-2">
-                    <div class="card bg-success text-light" style="width: 18rem;">
-                        <img src="img/teemo.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"><strong>Teemo</strong> con su veneno y su cegado es, sin lugar a
-                                dudas, el terror de la
-                                toplane.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12 col-md-2">
-                    <div class="card bg-success text-light " style="width: 18rem;">
-                        <img src="img/bardo.webp" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"><strong>Bardo</strong> es el compañero ideal para el adc ya que
-                                gracias a la curaciión y
-                                los portales es fácil escapar.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-12 col-md-2">
-                    <div class="card bg-success text-light" style="width: 18rem;">
-                        <img src="img/MissFortune_1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"><strong>Miss Fortune</strong> la famosa pirata de Aguas
-                                Estancadas derrite tanques, estructuras y adc's a
-                                partes iguales.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="col-sm-12 col-md-2">
-                    <div class="card bg-success text-light" style="width: 18rem;">
-                        <img src="img/Mordekaiser_13.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text"><strong>Mordekaiser</strong> una divinidad menor dedicada a la
-                                guerra te transporta a su mundo
-                                para robarrte tu alma y ejecutarde ahí.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!--FOOTER-->
 
         <div class="container-flid  bg-secondary">

@@ -12,7 +12,7 @@ $sql = $mbd->prepare("INSERT INTO editorial(nombre,direccion) VALUES(?,?);");
 
 $resultado = $sql->execute([$nombre, $direccion]);
 if ($resultado === TRUE) {
-    header('Location: index.html');
+    header('Location: index.php');
 } else {
     echo "Error al insertar el registro";
 }
