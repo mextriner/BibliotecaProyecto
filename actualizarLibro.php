@@ -24,7 +24,7 @@ if (isset($_POST['edit'])) {
         }
         $descripcion = $_POST['descripcion'];
         $editorial = $_POST['editorial'];
-
+        $unidades = $_POST['Unidades'];
         if ($error) {
             $r = "ha ocurrido un error";
             echo $r;
@@ -56,6 +56,12 @@ if (isset($_POST['edit'])) {
 
             $resultado = $sql->execute([$isbn, $nombre, $fecha, $bestseller, $destino, $editorial, $descripcion,$isbn]);
             if ($resultado === TRUE) {
+                for ($i = 0 ; $i < $unidades ; $i++){
+                    $mbd->exec("SET CHARACTER SET utf8");
+                    $sql2 = $mbd->prepare("INSERT INTO unidad (Libro_ISBN,estado) 
+                    VALUES(?,?);");
+                    $resultado2 = $sql2->execute([$isbn,true]);
+                }
                 header('Location: listarLibros.php');
             } else {
                 echo "Error al insertar el registro";

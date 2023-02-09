@@ -92,17 +92,17 @@
                             <?php
                             include 'conexion.php';
                             /*$conexion = new PDO('mysql:host=localhost;dbname=aplicacion','root', '');*/
-                            foreach ($mbd->query("SELECT * FROM libro;") as $libro) {
+                            foreach ($mbd->query("SELECT * FROM libro LIMIT 10;") as $libro) {
 
                             ?>
                                 <div class="swiper-slide">
 
-                                    <div class="card" style="width: 18rem;">
+                                    <a href="prestamo.php?ISBN=<?php echo $libro['ISBN'] ?>"><div class="card" style="width: 18rem;">
                                         <img src=<?php echo $libro['portada'] ?> class="card-img-top" style="border-radius:5%;">
                                         <div class="card-body">
                                             <p class="card-text"><strong><?php echo $libro['titulo'] ?></strong> <?php echo $libro['descripcion'] ?></p>
                                         </div>
-                                    </div>
+                                    </div></a>
                                 </div>
                             <?php
 

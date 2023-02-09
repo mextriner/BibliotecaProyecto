@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'conexion.php';
 if (!isset($_POST['oculto'])) {
 
@@ -37,8 +38,8 @@ $sql->execute();
 
     $resultado = $sql->execute([$usuario, $nombre, $apellido,$direccion, $fecha,$clave]);
     if ($resultado === TRUE) {
-        session_start();
-        $_SESSION['idUsuario'] = $usuario;
+        
+        $_SESSION['id'] = $usuario;
 
 
         header('Location: index.php');

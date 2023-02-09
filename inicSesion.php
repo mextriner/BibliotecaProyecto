@@ -1,19 +1,24 @@
 
 <?php
+session_start();
 include 'conexion.php';
 if(isset($_POST['sesion'])){
     $nombre = $_POST['usuario'];
     $clave = $_POST['clave'];
-    $sql = $mbd->prepare("SELECT idUsuario FROM usuario WHERE idUsuario = ?;");
+    $sql = $mbd->prepare("SELECT * FROM usuario WHERE idUsuario = ?;");
     $sql->execute([$nombre]);
     $count = $sql->rowCount();
     if($count > 0){
         $resultado = $sql->fetch(PDO::FETCH_ASSOC);
         if($resultado['clave']==$clave){
-            session_start();
             $_SESSION['id']=$nombre;
-            header('location:idex.php');
+            header('location:index.php');
+        }else{
+            echo "Contraseña incorrecta";
         }
+        
+    }else{
+        echo "No existe este usuario";
     }
 }
 
@@ -30,7 +35,7 @@ if(isset($_POST['sesion'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
     <link rel="stylesheet" href="lb/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css2/all.min.css" />
+    <link rel="stylesheet" href="fontawesome-free-6.3.0-web/css/all.min.css">
 </head>
 
 <body calss="d-flex justify-content-center" style="background-color: #262424;">
@@ -38,9 +43,9 @@ if(isset($_POST['sesion'])){
     <div class="row d-flex justify-content-center">
         <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
 
-            <a href="#"><img src="img/bibliLogoRec.png" style="width:20%;padding-left:20px;"></a>
-            <form method="" action="" style="padding-left:20px;padding-right:20px;">
-                <h1 style="font-size: 30px; margin-top:27px;"><strong>INICIAR SESIÓN</strong></h1>
+            <a href="index.php"><img src="img/bibliLogoRec.png" style="width:20%;padding-left:20px;"></a>
+            <form method="post" style="padding-left:20px;padding-right:20px;">
+                <h1 style="font-size: 30px; margin-top:27px;"><strong>INICIAR SESIÓN</strong></h1>¿NO TIENES CUENTA?    <a class="text-light" href="registro.php">REGÍSTRATE</a>
                 <div class="mt-3 mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Usuario</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre">

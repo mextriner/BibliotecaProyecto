@@ -1,5 +1,5 @@
 <?php
-    if(isset($_SESSION['nombre'])) header('Location: index.php');
+if (isset($_SESSION['nombre'])) header('Location: index.php');
 ?>
 
 <!DOCTYPE html>
@@ -40,11 +40,11 @@
                     <div class="mt-5">
                         <input type="submit" class="btn btn-primary btn-lg" name="enviar">
                     </div>
+                </form>
 
             </div>
-            </form>
 
-        </div>
+
         </div>
     </center>
     <script src="lb/js/bootstrap.min.js"> </script>
