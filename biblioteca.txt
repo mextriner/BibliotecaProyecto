@@ -1,0 +1,202 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema biblioteca
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema biblioteca
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `biblioteca` DEFAULT CHARACTER SET utf8mb3 ;
+USE `biblioteca` ;
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`autor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`autor` (
+  `idAutor` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `nacionalidad` VARCHAR(45) NULL DEFAULT NULL,
+  `fechaNac` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`idAutor`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`categoria` (
+  `idCategoria` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCategoria`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`editorial`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`editorial` (
+  `idEditorial` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `direccion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idEditorial`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`grupolibro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`grupolibro` (
+  `idGrupo` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `tipo` VARBINARY(15) NOT NULL,
+  PRIMARY KEY (`idGrupo`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`libro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`libro` (
+  `ISBN` VARCHAR(13) NOT NULL,
+  `titulo` VARCHAR(45) NULL DEFAULT NULL,
+  `fechaPublicacion` VARCHAR(45) NULL DEFAULT NULL,
+  `bestSeller` TINYINT NULL DEFAULT NULL,
+  `portada` VARCHAR(140) NULL DEFAULT NULL,
+  `Editorial_idEditorial` INT NOT NULL,
+  `descripcion` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`ISBN`),
+  INDEX `fk_Libro_Editorial1_idx` (`Editorial_idEditorial` ASC) VISIBLE,
+  CONSTRAINT `fk_Libro_Editorial1`
+    FOREIGN KEY (`Editorial_idEditorial`)
+    REFERENCES `biblioteca`.`editorial` (`idEditorial`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`libro_has_autor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`libro_has_autor` (
+  `Libro_ISBN` VARCHAR(13) NOT NULL,
+  `Autor_idAutor` INT NOT NULL,
+  PRIMARY KEY (`Libro_ISBN`, `Autor_idAutor`),
+  INDEX `fk_Libro_has_Autor_Autor1_idx` (`Autor_idAutor` ASC) VISIBLE,
+  INDEX `fk_Libro_has_Autor_Libro1_idx` (`Libro_ISBN` ASC) VISIBLE,
+  CONSTRAINT `fk_Libro_has_Autor_Autor1`
+    FOREIGN KEY (`Autor_idAutor`)
+    REFERENCES `biblioteca`.`autor` (`idAutor`),
+  CONSTRAINT `fk_Libro_has_Autor_Libro1`
+    FOREIGN KEY (`Libro_ISBN`)
+    REFERENCES `biblioteca`.`libro` (`ISBN`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`libro_has_categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`libro_has_categoria` (
+  `Libro_ISBN` VARCHAR(13) NOT NULL,
+  `Categoria_idCategoria` INT NOT NULL,
+  PRIMARY KEY (`Libro_ISBN`, `Categoria_idCategoria`),
+  INDEX `fk_Libro_has_Categoria_Categoria1_idx` (`Categoria_idCategoria` ASC) VISIBLE,
+  INDEX `fk_Libro_has_Categoria_Libro1_idx` (`Libro_ISBN` ASC) VISIBLE,
+  CONSTRAINT `fk_Libro_has_Categoria_Categoria1`
+    FOREIGN KEY (`Categoria_idCategoria`)
+    REFERENCES `biblioteca`.`categoria` (`idCategoria`),
+  CONSTRAINT `fk_Libro_has_Categoria_Libro1`
+    FOREIGN KEY (`Libro_ISBN`)
+    REFERENCES `biblioteca`.`libro` (`ISBN`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`sagas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`sagas` (
+  `Libro_ISBN` VARCHAR(13) NOT NULL,
+  `GrupoLibro_idGrupo` INT NOT NULL,
+  PRIMARY KEY (`Libro_ISBN`, `GrupoLibro_idGrupo`),
+  INDEX `fk_Sagas_GrupoLibro1_idx` (`GrupoLibro_idGrupo` ASC) VISIBLE,
+  CONSTRAINT `fk_Sagas_GrupoLibro1`
+    FOREIGN KEY (`GrupoLibro_idGrupo`)
+    REFERENCES `biblioteca`.`grupolibro` (`idGrupo`),
+  CONSTRAINT `fk_Sagas_Libro1`
+    FOREIGN KEY (`Libro_ISBN`)
+    REFERENCES `biblioteca`.`libro` (`ISBN`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`unidad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`unidad` (
+  `idUnidad` INT NOT NULL AUTO_INCREMENT,
+  `estado` TINYINT NOT NULL,
+  `proveedor` VARCHAR(45) NULL DEFAULT NULL,
+  `Libro_ISBN` VARCHAR(13) NOT NULL,
+  PRIMARY KEY (`idUnidad`),
+  INDEX `fk_Unidad_Libro1_idx` (`Libro_ISBN` ASC) VISIBLE,
+  CONSTRAINT `fk_Unidad_Libro1`
+    FOREIGN KEY (`Libro_ISBN`)
+    REFERENCES `biblioteca`.`libro` (`ISBN`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 46
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario` (
+  `idUsuario` VARCHAR(50) NOT NULL,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `direccion` VARCHAR(45) NULL DEFAULT NULL,
+  `fechaNac` DATE NULL DEFAULT NULL,
+  `clave` VARCHAR(16) NOT NULL,
+  PRIMARY KEY (`idUsuario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `biblioteca`.`usuario_has_unidad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `biblioteca`.`usuario_has_unidad` (
+  `Fecha` DATETIME NOT NULL,
+  `Usuario_idUsuario` VARCHAR(50) NOT NULL,
+  `Unidad_idUnidad` INT NOT NULL,
+  PRIMARY KEY (`Fecha`),
+  INDEX `fk_Usuario_has_Unidad_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  INDEX `fk_Usuario_has_Unidad_Unidad1_idx` (`Unidad_idUnidad` ASC) VISIBLE,
+  CONSTRAINT `fk_Usuario_has_Unidad_Unidad1`
+    FOREIGN KEY (`Unidad_idUnidad`)
+    REFERENCES `biblioteca`.`unidad` (`idUnidad`),
+  CONSTRAINT `fk_Usuario_has_Unidad_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `biblioteca`.`usuario` (`idUsuario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

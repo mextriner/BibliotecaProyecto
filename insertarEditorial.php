@@ -1,4 +1,8 @@
 <?php
+session_start();
+if ($_SESSION['id'] == null) {
+    header('location:inicSesion.php');
+}
 if (!isset($_POST['oculto'])) {
 
     exit();

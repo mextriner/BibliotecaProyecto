@@ -1,4 +1,8 @@
 <?php
+session_start();
+if ($_SESSION['id'] == null) {
+    header('location:inicSesion.php');
+}
 include 'conexion.php';
 if (isset($_POST['eliminar'])) {
     $id = $_POST['idLibro'];

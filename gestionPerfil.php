@@ -190,35 +190,36 @@ if (isset($_POST['cerrar'])) {
         <div class="row justify-content-center mt-3 pt-2 pb-2 bg-secondary">
             <h4 style="font-family:monospace; font-size : 46px; color: aliceblue;">MIS ÚLTIMOS LIBROS
             </h4>
-            <div class="col-sm-12 col-md-2">
-                <?php
-                include 'conexion.php';
-                $sql2 = $mbd->prepare("SELECT * FROM usuario_has_unidad WHERE Usuario_idUsuario = ?;");
-                $sql2->execute([$_SESSION['id']]);
-                $r = $sql2->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($r as $res) {
-                    $sql3 = $mbd->prepare("SELECT * FROM unidad WHERE idUnidad LIKE ?;");
-                    $sql3->execute([$res['Unidad_idUnidad']]);
-                    $uni = $sql3->fetch(PDO::FETCH_ASSOC);
 
-                    $sql4 = $mbd->prepare("SELECT * FROM libro WHERE ISBN LIKE ?;");
-                    $sql4->execute([$uni['Libro_ISBN']]);
-                    $lib = $sql4->fetch(PDO::FETCH_ASSOC);
-                ?>
+            <?php
+            include 'conexion.php';
+            $sql2 = $mbd->prepare("SELECT * FROM usuario_has_unidad WHERE Usuario_idUsuario = ?;");
+            $sql2->execute([$_SESSION['id']]);
+            $r = $sql2->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($r as $res) {
+                $sql3 = $mbd->prepare("SELECT * FROM unidad WHERE idUnidad LIKE ?;");
+                $sql3->execute([$res['Unidad_idUnidad']]);
+                $uni = $sql3->fetch(PDO::FETCH_ASSOC);
 
+                $sql4 = $mbd->prepare("SELECT * FROM libro WHERE ISBN LIKE ?;");
+                $sql4->execute([$uni['Libro_ISBN']]);
+                $lib = $sql4->fetch(PDO::FETCH_ASSOC);
+            ?>
 
-                    <div class="card bg-dark text-light" style="width: 18rem;">
+                <div class="col-sm-12 col-md-3 d-flex align-items-center">
+                    <div class="card bg-dark text-light mb-4" style="width: 18rem; border-radius:5%;">
                         <img src="<?php echo $lib['portada']; ?>" alt="..." style="border-radius:5%;">
                         <div class="card-body">
                             <p class="card-text"><strong><?php echo $lib['titulo']; ?></strong>
                                 <?php echo $lib['descripcion']; ?></p>
                         </div>
+                        <button class="btn-info" name="devolver" style="border-radius:4%;">DEVOLVER</button>
                     </div>
-                    <button class="btn-info" name="devolver">DEVOLVER</button>
-                <?php
-                }
-                ?>
-            </div>
+                </div>
+            <?php
+            }
+            ?>
+
 
             <!--FOOTER-->
 
