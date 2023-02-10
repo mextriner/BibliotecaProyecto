@@ -110,6 +110,7 @@ if (isset($_POST['cerrar'])) {
 
 
     <!--LA BARRA DE NAVEGACION-->
+    <!--LA BARRA DE NAVEGACION-->
     <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
@@ -162,11 +163,15 @@ if (isset($_POST['cerrar'])) {
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
-                            <form class="d-flex">
+                        <form method="GET" class="d-flex text-light">
+                                
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-info" type="button" id="button-addon2">Buscar</button>
+                                    <input type="text" class="form-control" name="bus" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    <button class="btn btn-outline-info" name="buscar" value="yes" type="submit" id="button-addon2">Buscar</button>
                                 </div>
+
+
                             </form>
                         </li>
 

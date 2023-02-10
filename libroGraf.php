@@ -1,8 +1,9 @@
 <?php
-$conexion = mysqli_connect("localhost","root","1234","liceo");
-$consulta = "SELECT * FROM evaluaciones";
-$resultado = mysqli_query($conexion, $consulta);
-
+include 'conexion.php';
+$consulta2 = "SELECT * FROM libro;";
+$sql2 = $mbd->prepare($consulta2);
+$sql2->execute();
+$resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -31,17 +32,16 @@ $(function () {
             text: 'CUrso 2022-2023'
         },
         xAxis: {
-            categories: [<?php
-                while($fila = mysqli_fetch_array($resultado)){
-                    echo"".$fila["nombre"].",";
+            categories: [ <?php
+                foreach ($resultado2 as $l) {
+                    echo $l['titulo'].",";
                 }
-                ?>
-                ]
+                ?>]
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'Notas (millions)',
+                text: 'Unidades (integer)',
                 align: 'high'
             },
             labels: {
@@ -49,7 +49,7 @@ $(function () {
             }
         },
         tooltip: {
-            valueSuffix: ' millions'
+            valueSuffix: ' unidades'
         },
         plotOptions: {
             bar: {
@@ -72,11 +72,23 @@ $(function () {
         credits: {
             enabled: false
         },
-        series: [{<?php
-                while($fila = mysqli_fetch_array($resultado)){
-                    echo"data: [".$fila["examen_final"]."],";
-                }
+        series: [{
+            name:'unidades disponibles',
+            data:[<?php
+                foreach ($resultado2 as $libro) {
+
+                    $stmt = $mbd->prepare("SELECT * FROM editorial WHERE idEditorial = ?;");
+                    $stmt->execute([$libro['Editorial_idEditorial']]);
+                    $editorial = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    $stmt2 = $mbd->prepare("SELECT COUNT(*) FROM unidad WHERE unidad.Libro_ISBN = ?;");
+                    $stmt2->execute([$libro['ISBN']]);
+                    $unidades = $stmt2->fetchColumn();
+                    echo $unidades.",";
+                    }
                 ?>]
+        }]
+        
     });
 });
 		</script>

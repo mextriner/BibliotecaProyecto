@@ -11,10 +11,8 @@
 </head>
 
 <body class="bg-secondary text-light" style="font-family:monospace;">
-    <div>
-
-        <!--LA BARRA DE NAVEGACION-->
-        <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
+    <!--LA BARRA DE NAVEGACION-->
+    <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
@@ -66,11 +64,15 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
-                            <form class="d-flex">
+                            <form method="GET" class="d-flex text-light">
+
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-info" type="button" id="button-addon2">Buscar</button>
+                                    <input type="text" class="form-control" name="bus" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    <button class="btn btn-outline-info" name="buscar" value="yes" type="submit" id="button-addon2">Buscar</button>
                                 </div>
+
+
                             </form>
                         </li>
 
@@ -85,93 +87,93 @@
             </div>
         </nav>
     </div>
-        <div class="container-fluid bg-dark">
-            <!--en esta linea se reparten los elementos-->
+    <div class="container-fluid bg-dark">
+        <!--en esta linea se reparten los elementos-->
 
-            <form method="POST" action="insertarLibro.php" enctype="multipart/form-data">
+        <form method="POST" action="insertarLibro.php" enctype="multipart/form-data">
 
-                <div class="row  d-flex justify-content-center">
+            <div class="row  d-flex justify-content-center">
 
-                    <div class="col-md-4 col-sm-12 mb-3 mt-4">
-                        <h1 style="font-size: 30px;"><strong>REGISTRO   </strong><i class="fa-solid fa-book-bookmark"></i></h1>
-                        
-                        <label for="exampleFormControlInput1" class="form-label">Libro</label>
-                        <input type="text" class="form-control" name="Titulo" placeholder="Título">
+                <div class="col-md-4 col-sm-12 mb-3 mt-4">
+                    <h1 style="font-size: 30px;"><strong>REGISTRO </strong><i class="fa-solid fa-book-bookmark"></i></h1>
+
+                    <label for="exampleFormControlInput1" class="form-label">Libro</label>
+                    <input type="text" class="form-control" name="Titulo" placeholder="Título">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+
+
+                <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
+
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">ISBN</label>
+                        <input type="text" class="form-control" name="ISBN" placeholder="00 0000 000 0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha Publicación</label>
+                        <input type="date" class="form-control" name="Fecha" placeholder="Fecha">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileMultiple" class="form-label">Portada</label>
+                        <input class="form-control" type="file" name="foto" id="formFileMultiple" multiple>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Número de Unidades</label>
+                        <input type="text" class="form-control" name="Unidades" placeholder="Unidades">
                     </div>
                 </div>
-                <div class="row d-flex justify-content-center">
+                <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
 
-
-                    <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
-
-
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">ISBN</label>
-                            <input type="text" class="form-control" name="ISBN" placeholder="00 0000 000 0">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Fecha Publicación</label>
-                            <input type="date" class="form-control" name="Fecha" placeholder="Fecha">
-                        </div>
-                        <div class="mb-3">
-                            <label for="formFileMultiple" class="form-label">Portada</label>
-                            <input class="form-control" type="file" name="foto" id="formFileMultiple" multiple>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Número de Unidades</label>
-                            <input type="text" class="form-control" name="Unidades" placeholder="Unidades">
-                        </div>
+                    <label for="inputState" class="form-label">Bestseller</label>
+                    <div class="form-floating mb-4">
+                        <select name="bestseller" class="form-select">
+                            <option value=0>NO</option>
+                            <option value=1>SÍ</option>
+                        </select>
                     </div>
-                    <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light">
 
-                        <label for="inputState" class="form-label">Bestseller</label>
-                        <div class="form-floating mb-4">
-                            <select name="bestseller" class="form-select">
-                                <option value=0>NO</option>
-                                <option value=1>SÍ</option>
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="form-label">Descripción</label>
+                        <textarea class="form-control" name="descripcion" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputState" class="form-label">Editorial</label>
+                        <div class="form-floating">
+
+                            <select name="editorial" class="form-select">
+                                <option selected>Seleccione Editorial</option>
+                                <?php
+                                include 'conexion.php';
+                                /*$conexion = new PDO('mysql:host=localhost;dbname=aplicacion','root', '');*/
+                                foreach ($mbd->query("SELECT * FROM editorial;") as $editorial) {
+
+                                    echo '<option value=' . $editorial['idEditorial'] . '.>' . $editorial['nombre'] . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
-
-                        <div class="mb-4">
-                            <label for="exampleFormControlInput1" class="form-label">Descripción</label>
-                            <textarea class="form-control" name="descripcion" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputState" class="form-label">Editorial</label>
-                            <div class="form-floating">
-
-                                <select name="editorial" class="form-select">
-                                    <option selected>Seleccione Editorial</option>
-                                    <?php
-                                    include 'conexion.php';
-                                    /*$conexion = new PDO('mysql:host=localhost;dbname=aplicacion','root', '');*/
-                                    foreach ($mbd->query("SELECT * FROM editorial;") as $editorial) {
-
-                                        echo '<option value=' . $editorial['idEditorial'] . '.>' . $editorial['nombre'] . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-
-
-
-
-                        <input type="hidden" name="oculto" value="1">
-
-
                     </div>
-                </div>
-                <div class="row d-flex justify-content-center">
-                    <div class="mb-3 col-sm-12 col-md-1">
-                        <button class="btn btn-outline-success Hadow rounded border" type="submit">INSERTAR</button>
-                    </div>
-                </div>
-            </form>
 
 
-        </div>
+
+
+                    <input type="hidden" name="oculto" value="1">
+
+
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="mb-3 col-sm-12 col-md-1">
+                    <button class="btn btn-outline-success Hadow rounded border" type="submit">INSERTAR</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
     </div>
     <!--FOOTER-->
 

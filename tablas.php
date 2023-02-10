@@ -39,7 +39,8 @@ if (isset($_POST['cerrar'])) {
 </head>
 
 <body>
-<div class="container-fluid bg-secondary" style="padding:0;width:100%;">
+    <!--LA BARRA DE NAVEGACION-->
+    <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
@@ -91,11 +92,15 @@ if (isset($_POST['cerrar'])) {
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
-                            <form class="d-flex">
+                            <form method="GET" class="d-flex text-light">
+
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-info" type="button" id="button-addon2">Buscar</button>
+                                    <input type="text" class="form-control" name="bus" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    <button class="btn btn-outline-info" name="buscar" value="yes" type="submit" id="button-addon2">Buscar</button>
                                 </div>
+
+
                             </form>
                         </li>
 
@@ -149,7 +154,7 @@ if (isset($_POST['cerrar'])) {
                     ?>
 
                 </table>
-                <h2>Listado de LIBROS   <a class="text-dark" href="libroPdf.php"><i class="fa-solid fa-file-circle-plus"></i></a></h2>
+                <h2>Listado de LIBROS   <a class="text-dark" href="libroPdf.php"><i class="fa-solid fa-file-circle-plus"></i></a>     <a class="text-dark" href="libroGraf.php"><i class="fa-solid fa-chart-line"></i></a></h2>
                 <table class="table" style="border: solid darkgray 1px;">
                     <tr>
                         <td>ISBN</td>
@@ -200,7 +205,7 @@ if (isset($_POST['cerrar'])) {
                     <?php
                     foreach ($resultado3 as $prestamo) {
 
-                        $devol = date("Y-m-d H:i:s",strtotime($prestamo['Fecha']."+2 week"));
+                        $devol = date("Y-m-d H:i:s", strtotime($prestamo['Fecha'] . "+2 week"));
 
                         $stmt3 = $mbd->prepare("SELECT * FROM unidad WHERE idUnidad = ?;");
                         $stmt3->execute([$prestamo['Unidad_idUnidad']]);

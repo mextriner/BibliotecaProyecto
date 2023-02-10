@@ -48,7 +48,6 @@ if (isset($_POST['eliminar'])) {
 
 <body class="bg-secondary" style="font-family:monospace;">
     <!--LA BARRA DE NAVEGACION-->
-    <!--LA BARRA DE NAVEGACION-->
     <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">

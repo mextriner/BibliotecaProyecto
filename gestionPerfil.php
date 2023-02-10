@@ -32,10 +32,8 @@ if (isset($_POST['cerrar'])) {
 </head>
 
 <body class="bg-secondary">
-    <div>
-
-        <!--LA BARRA DE NAVEGACION-->
-        <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
+    <!--LA BARRA DE NAVEGACION-->
+    <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
@@ -87,11 +85,15 @@ if (isset($_POST['cerrar'])) {
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
-                            <form class="d-flex">
+                            <form method="GET" class="d-flex text-light">
+
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-info" type="button" id="button-addon2">Buscar</button>
+                                    <input type="text" class="form-control" name="bus" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    <button class="btn btn-outline-info" name="buscar" value="yes" type="submit" id="button-addon2">Buscar</button>
                                 </div>
+
+
                             </form>
                         </li>
 
@@ -106,54 +108,54 @@ if (isset($_POST['cerrar'])) {
             </div>
         </nav>
     </div>
-        <!---->
+    <!---->
 
-        <!-- INFO DE MI CUENTA -->
-        <!-- NOMBRE, APELLIDOS, CORREO, ETC. -->
+    <!-- INFO DE MI CUENTA -->
+    <!-- NOMBRE, APELLIDOS, CORREO, ETC. -->
 
-        <div class="container-fluid align-item-center">
-            <!--en esta linea se reparten los elementos-->
-            <div class="row d-flex justify-content-center text-center" style="font-family:monospace; color: aliceblue;">
-                <h5 style="font-family:monospace; font-size : 46px; color: #ffffff;"><strong>MI CUENTA <i class="fa-solid fa-user"></i></strong></h5>
-                <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light bg-dark p-5" style="border-radius: 5%;">
-                    <form class="mb-5" method="post" action="actualizarUsuario.php">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="clave" placeholder="Contraseña">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-                            <input type="text" class="form-control" name="usuario" value='<?php echo $resultado["idUsuario"] ?>'>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" value='<?php echo $resultado["nombre"] ?>'>
-                        </div>
+    <div class="container-fluid align-item-center">
+        <!--en esta linea se reparten los elementos-->
+        <div class="row d-flex justify-content-center text-center" style="font-family:monospace; color: aliceblue;">
+            <h5 style="font-family:monospace; font-size : 46px; color: #ffffff;"><strong>MI CUENTA <i class="fa-solid fa-user"></i></strong></h5>
+            <div class="col-sm-12 col-md-4 mt-3 mb-3 text-light bg-dark p-5" style="border-radius: 5%;">
+                <form class="mb-5" method="post" action="actualizarUsuario.php">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="clave" placeholder="Contraseña">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" name="usuario" value='<?php echo $resultado["idUsuario"] ?>'>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" value='<?php echo $resultado["nombre"] ?>'>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" name="apellido" value='<?php echo $resultado["apellido"] ?>'>
-                        </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="apellido" value='<?php echo $resultado["apellido"] ?>'>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Direccion</label>
-                            <input type="text" class="form-control" name="direccion" value='<?php echo $resultado["direccion"] ?>'>
-                        </div>
-                        <div class="mt-5 mb-5 pb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" name="fechaNac" value='<?php echo $resultado["fechaNac"] ?>'>
-                        </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" name="direccion" value='<?php echo $resultado["direccion"] ?>'>
+                    </div>
+                    <div class="mt-5 mb-5 pb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" name="fechaNac" value='<?php echo $resultado["fechaNac"] ?>'>
+                    </div>
 
-                        <div class="mt-5 col-12 d-flex justify-content-center align-item-center">
-                            <button class="btn btn-outline-info Hadow rounded border" name="actualizar" type="submit">ACTUALIZAR
-                                CUENTA</button>
-                        </div>
-                    </form>
-                    <a class="mt-2 text-danger" href="eliminarUsuario.php?idUsuario=<?php echo $_SESSION['id'] ?>">ELIMINAR CUENTA</a>
-                </div>
+                    <div class="mt-5 col-12 d-flex justify-content-center align-item-center">
+                        <button class="btn btn-outline-info Hadow rounded border" name="actualizar" type="submit">ACTUALIZAR
+                            CUENTA</button>
+                    </div>
+                </form>
+                <a class="mt-2 text-danger" href="eliminarUsuario.php?idUsuario=<?php echo $_SESSION['id'] ?>">ELIMINAR CUENTA</a>
             </div>
-
         </div>
+
+    </div>
 
 
 
