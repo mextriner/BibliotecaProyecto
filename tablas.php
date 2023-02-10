@@ -13,6 +13,17 @@ $consulta2 = "SELECT * FROM libro;";
 $sql2 = $mbd->prepare($consulta2);
 $sql2->execute();
 $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
+
+$consulta3 = "SELECT * FROM usuario_has_unidad;";
+$sql3 = $mbd->prepare($consulta3);
+$sql3->execute();
+$resultado3 = $sql3->fetchALL(PDO::FETCH_ASSOC);
+
+if (isset($_POST['cerrar'])) {
+    session_unset();
+    session_destroy();
+    header('location:inicSesion.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +39,10 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
+<div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
-                <a class="navbar-brand" href=""><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
+                <a class="navbar-brand" href="index.php"><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="bg-ligth">
                         <span class="navbar-toggler-icon"></span>
@@ -51,23 +62,32 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="inicSesion.php">Iniciar Sesión</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li><a class="dropdown-item" href="gestionPerfil.php">Mi cuenta</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
-                            <a class="nav-link dropdown-toggle text-light" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link text-light" href="tablas.php" id="navbarDropdown" role="button">
                                 Tablas <i class="fa-sharp fa-solid fa-chart-simple"></i>
                             </a>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5px;">
+                            <a class="nav-link text-light" href="listarLibros.php" id="navbarDropdown" role="button">
+                                Libros <i class="fa-solid fa-book-bookmark"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5px;">
+                            <a class="nav-link dropdown-toggle text-light" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                INSERTAR <i class="fa-solid fa-circle-plus"></i>
+                            </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="listarUsuarios.php">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="registroLibro.php">Registrar Libro</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="listarLibros.php">Unidades</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="listarPrestamos.php">Préstamos</a></li>
+                                <li><a class="dropdown-item" href="registroEditorial.php">Registrar Editorial</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
@@ -80,24 +100,24 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                         </li>
 
 
+
                     </ul>
                     <form method="post" action="">
                         <input type="hidden" value="1" name="cerrar">
                         <button class="btn btn-danger" type="submit" value="1" id="button-addon2">CERAR SESION</button>
                     </form>
-
                 </div>
             </div>
         </nav>
     </div>
     <section>
         <h1>BIENVENIDO: <?php echo $_SESSION['id'] ?></h1>
-        
+
         <div class="row d-flex justify-content-center px-5">
-            <div class="col-md-4 col-sm-12 w-100">
-                
+            <div class="col-md-4 col-sm-12" style="width:66%;">
+
                 <!--Comenzamos a mostrar los datos-->
-                <h2>Listado de USUARIOS</h2>
+                <h2>Listado de USUARIOS <a class="text-dark" href="usuarioPdf.php"><i class="fa-solid fa-file-circle-plus"></i></a></h2>
                 <table class="table" style="border: solid darkgray 1px;">
                     <tr>
                         <td>Usuario</td>
@@ -105,8 +125,6 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                         <td>Nombre</td>
                         <td>Direccion</td>
                         <td>Edad</td>
-                        <td>Editar</td>
-                        <td>Eliminar</td>
                     </tr>
                     <?php
                     $hoy = date('Y-m-d');
@@ -121,11 +139,9 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                             <td style="border: solid darkgray 1px; "><?php echo $usur['apellido']; ?></td>
                             <td style="border: solid darkgray 1px; "><?php echo $usur['nombre']; ?></td>
                             <td style="border: solid darkgray 1px; "><?php echo $usur['direccion']; ?></td>
-                            <td style="border: solid darkgray 1px; "><?php echo $edad;?> años</td>
+                            <td style="border: solid darkgray 1px; "><?php echo $edad; ?> años</td>
                             <!--Primera cosa que faltaba: Voy a enviar una variable via URL-->
                             <!--Para probar que va situaros sobre cualquier boton editar y debe darme el id abajo-->
-                            <td style="border: solid darkgray 1px;"><a class="text-dark" href="editar.php?id=<?php echo $datos['idUsuario'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td><a class="text-dark" href="eliminar.php?id=<?php echo $datos['idUsuario'] ?>"><i class="fa-solid fa-delete-left"></i></a></td>
 
                         </tr>
                     <?php
@@ -133,7 +149,7 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                     ?>
 
                 </table>
-                <h2>Listado de LIBROS</h2>
+                <h2>Listado de LIBROS   <a class="text-dark" href="libroPdf.php"><i class="fa-solid fa-file-circle-plus"></i></a></h2>
                 <table class="table" style="border: solid darkgray 1px;">
                     <tr>
                         <td>ISBN</td>
@@ -142,12 +158,10 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                         <td>Descripción</td>
                         <td>Editorial</td>
                         <td>Unidades</td>
-                        <td>Editar</td>
-                        <td>Eliminar</td>
                     </tr>
                     <?php
                     foreach ($resultado2 as $libro) {
-                         
+
                         $stmt = $mbd->prepare("SELECT * FROM editorial WHERE idEditorial = ?;");
                         $stmt->execute([$libro['Editorial_idEditorial']]);
                         $editorial = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -166,8 +180,46 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
                             <td style="border: solid darkgray 1px; "><?php echo $unidades; ?></td>
                             <!--Primera cosa que faltaba: Voy a enviar una variable via URL-->
                             <!--Para probar que va situaros sobre cualquier boton editar y debe darme el id abajo-->
-                            <td style="border: solid darkgray 1px;"><a class="text-dark" href="editar.php?id=<?php echo $datos['idUsuario'] ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td><a class="text-dark" href="eliminar.php?id=<?php echo $datos['idUsuario'] ?>"><i class="fa-solid fa-delete-left"></i></a></td>
+
+                        </tr>
+                    <?php
+                    }
+                    ?>
+
+                </table>
+
+                </table>
+                <h2>Listado de Préstamos <a class="text-dark" href="prestamoPdf.php"><i class="fa-solid fa-file-circle-plus"></i></a></h2>
+                <table class="table" style="border: solid darkgray 1px;">
+                    <tr>
+                        <td>Usuario</td>
+                        <td>Libro</td>
+                        <td>Fecha Préstamo</td>
+                        <td>Fecha Entrega</td>
+                    </tr>
+                    <?php
+                    foreach ($resultado3 as $prestamo) {
+
+                        $devol = date("Y-m-d H:i:s",strtotime($prestamo['Fecha']."+2 week"));
+
+                        $stmt3 = $mbd->prepare("SELECT * FROM unidad WHERE idUnidad = ?;");
+                        $stmt3->execute([$prestamo['Unidad_idUnidad']]);
+                        $un = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+                        $stmt4 = $mbd->prepare("SELECT * FROM libro WHERE ISBN = ?;");
+                        $stmt4->execute([$un['Libro_ISBN']]);
+                        $l = $stmt4->fetch(PDO::FETCH_ASSOC);
+
+                        $stmt5 = $mbd->prepare("SELECT * FROM usuario WHERE idUsuario = ?;");
+                        $stmt5->execute([$prestamo['Usuario_idUsuario']]);
+                        $us = $stmt5->fetch(PDO::FETCH_ASSOC);
+
+                    ?>
+                        <tr style="border: solid black 2px;">
+                            <td style="border: solid black 2px;"><?php echo $us['idUsuario']; ?></td>
+                            <td style="border: solid darkgray 1px; "><?php echo $l['titulo']; ?></td>
+                            <td style="border: solid darkgray 1px; "><?php echo $prestamo['Fecha']; ?></td>
+                            <td style="border: solid darkgray 1px; "><?php echo $devol; ?></td>
 
                         </tr>
                     <?php
@@ -178,7 +230,7 @@ $resultado2 = $sql2->fetchALL(PDO::FETCH_ASSOC);
 
 
             </div>
-            
+
     </section>
     <script src="lb/js/bootstrap.min.js"></script>
 </body>

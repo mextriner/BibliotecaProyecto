@@ -52,7 +52,7 @@ if (isset($_POST['eliminar'])) {
     <div class="container-fluid bg-secondary" style="padding:0;width:100%;">
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
-                <a class="navbar-brand" href=""><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
+                <a class="navbar-brand" href="index.php"><img src="img/bibliLogoRec.png" alt="" style="width:35% ;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="bg-ligth">
                         <span class="navbar-toggler-icon"></span>
@@ -72,26 +72,36 @@ if (isset($_POST['eliminar'])) {
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="inicSesion.php">Iniciar Sesión</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="gestionPerfil.php">Mi cuenta</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5px;">
+                            <a class="nav-link text-light" href="tablas.php" id="navbarDropdown" role="button">
+                                Tablas <i class="fa-sharp fa-solid fa-chart-simple"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown" style="margin-left:5px;">
+                            <a class="nav-link text-light" href="listarLibros.php" id="navbarDropdown" role="button">
+                                Libros <i class="fa-solid fa-book-bookmark"></i>
+                            </a>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
                             <a class="nav-link dropdown-toggle text-light" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Tablas <i class="fa-sharp fa-solid fa-chart-simple"></i>
+                                INSERTAR <i class="fa-solid fa-circle-plus"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="registro.php">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="registroLibro.php">Registrar Libro</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="inicSesion.php">Libros</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="inicSesion.php">Préstamos</a></li>
+                                <li><a class="dropdown-item" href="registroEditorial.php">Registrar Editorial</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style="margin-left:5px;">
-                            <form method="GET" class="d-flex text-light">
+                        <form method="GET" class="d-flex text-light">
                                 
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" name="bus" placeholder="Término de búsqueda" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -104,8 +114,12 @@ if (isset($_POST['eliminar'])) {
                         </li>
 
 
-                    </ul>
 
+                    </ul>
+                    <form method="post" action="">
+                        <input type="hidden" value="1" name="cerrar">
+                        <button class="btn btn-danger" type="submit" value="1" id="button-addon2">CERAR SESION</button>
+                    </form>
                 </div>
             </div>
         </nav>

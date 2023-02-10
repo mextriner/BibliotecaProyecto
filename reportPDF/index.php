@@ -9,7 +9,7 @@ class PDF extends FPDF
         // Logo
         $this->Image('bibliLogoW.png', 10, 4, 23);
         // Arial bold 15
-        $this->SetFont('Arial', 'B', 15);
+        $this->SetFont('ZapfDingbats ', 'B', 15);
         // Movernos a la derecha
         $this->Cell(50);
         // Título
@@ -61,3 +61,4 @@ while ($fila = $resultado->fetch_assoc()) {
 $pdf->Ln(10);
 
 $pdf->Output();
+$pdf->close();
